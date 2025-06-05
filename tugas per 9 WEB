@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Konversi Bilangan</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #6dd5ed, #2193b0);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      width: 300px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      background-color: #00c9a7;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #007f6b;
+    }
+
+    .result {
+      margin-top: 20px;
+      text-align: left;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    .alert {
+      background-color: #ff4e4e;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Konversi Bilangan</h1>
+    <input type="text" id="inputDecimal" placeholder="Masukkan bilangan desimal" />
+    <button onclick="konversi()">Konversi</button>
+    <div id="output" class="result" style="display: none;"></div>
+    <div id="alertBox" class="alert" style="display: none;">Masukkan angka yang benar!</div>
+  </div>
+
+  <script>
+    function konversi() {
+      const input = document.getElementById("inputDecimal").value.trim();
+      const output = document.getElementById("output");
+      const alertBox = document.getElementById("alertBox");
+      const decimal = parseInt(input);
+
+      if (isNaN(decimal)) {
+        output.style.display = "none";
+        alertBox.style.display = "block";
+        return;
+      }
+
+      alertBox.style.display = "none";
+      output.style.display = "block";
+
+      const biner = decimal.toString(2);
+      const oktal = decimal.toString(8);
+      const heksa = decimal.toString(16).toUpperCase();
+
+      output.innerHTML = `
+        <strong>Biner:</strong> ${biner}<br>
+        <strong>Oktal:</strong> ${oktal}<br>
+        <strong>Heksadesimal:</strong> ${heksa}
+      `;
+    }
+  </script>
+</body>
+</html>
